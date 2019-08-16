@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/wimgoeman/fs-rss.svg?style=svg)](https://circleci.com/gh/wimgoeman/fs-rss)
+
 # File system based RSS server
 
 This project aims to offer a server capable of serving RSS 2.0 content with as little setup as possible, where other RSS
