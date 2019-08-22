@@ -2,6 +2,7 @@ package fsrss
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import java.util.Base64
 import java.io.File
 import java.nio.file.Path
 
@@ -36,7 +37,7 @@ class FeedHandler {
             str += "<item>" +
                     "<title>${item.title}</title>" +
                     "<link>${item.link}</link>" +
-                    "<description><![CDATA[${item.description}]]></description>" +
+                    "<description><![CDATA[${String(Base64.getDecoder().decode(item.description))}]]></description>" +
                     "</item>"
         }
         return str

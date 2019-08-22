@@ -2,6 +2,7 @@ package fsrss
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import java.util.Base64
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
@@ -49,6 +50,12 @@ class FeedController {
         val itemFile = Path.of(path.toString(), sanitizedTitle)
         if (Files.exists(itemFile))  {
             return ResponseEntity("Item already exist", HttpStatus.BAD_REQUEST)
+        }
+
+        try {
+            Base64.getDecoder().decode(item.description)
+        } catch (e: Exception) {
+            return ResponseEntity("Cannot decode item description $e", HttpStatus.BAD_REQUEST)
         }
 
         Files.writeString(itemFile, jsonMapper.writeValueAsString(item))
