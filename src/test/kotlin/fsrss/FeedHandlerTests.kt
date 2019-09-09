@@ -12,8 +12,8 @@ class FeedHandlerTests {
     @Test
     fun createSimpleFeed() {
         val input = Feed(FeedMetaData("title", "desc", "link"), 
-                listOf(Item("title1", "link1", "desc1"), 
-                        Item("title2", "link2", "desc2")))
+                listOf(Item("title1", "link1", "c29tZSBlbmNvZGVkIGRlc2NyaXB0aW9u"),
+                        Item("title2", "link2", "c29tZSBlbmNvZGVkIGRlc2NyaXB0aW9u")))
 
         val output: String = FeedHandler().createRssFeed(input)
 
@@ -26,12 +26,12 @@ class FeedHandlerTests {
                 "<item>" +
                 "<title>title1</title>" +
                 "<link>link1</link>" +
-                "<description><![CDATA[desc1]]></description>" +
+                "<description><![CDATA[some encoded description]]></description>" +
                 "</item>" +
                 "<item>" +
                 "<title>title2</title>" +
                 "<link>link2</link>" +
-                "<description><![CDATA[desc2]]></description>" +
+                "<description><![CDATA[some encoded description]]></description>" +
                 "</item>" +
                 "</channel>" +
                 "</rss>"
